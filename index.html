@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - O.TWO.O Cosmetic's</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            overflow-x: hidden;
+            position: relative;
+
+            background: linear-gradient(
+                135deg,
+                #f9eee8,
+                #e8c8bb,
+                #f6ddd5,
+                #c78f7c
+            );
+        }
+
+        /* Background decoration */
+        .background-decoration {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Decorative circles */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 40px rgba(120, 70, 55, 0.08);
+        }
+
+        .bubble-one {
+            width: 260px;
+            height: 260px;
+            top: -70px;
+            left: -70px;
+        }
+
+        .bubble-two {
+            width: 350px;
+            height: 350px;
+            bottom: -120px;
+            right: -80px;
+        }
+
+        .bubble-three {
+            width: 130px;
+            height: 130px;
+            top: 12%;
+            right: 20%;
+        }
+
+        /* Floating beauty icons */
+        .beauty-icon {
+            position: absolute;
+            color: rgba(117, 66, 54, 0.35);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .icon-one {
+            top: 15%;
+            left: 12%;
+            font-size: 55px;
+        }
+
+        .icon-two {
+            top: 22%;
+            right: 12%;
+            font-size: 45px;
+            animation-delay: 1s;
+        }
+
+        .icon-three {
+            bottom: 18%;
+            left: 15%;
+            font-size: 48px;
+            animation-delay: 2s;
+        }
+
+        .icon-four {
+            bottom: 12%;
+            right: 18%;
+            font-size: 55px;
+            animation-delay: 1.5s;
+        }
+
+        .icon-five {
+            top: 50%;
+            left: 5%;
+            font-size: 32px;
+            animation-delay: 0.5s;
+        }
+
+        .icon-six {
+            top: 55%;
+            right: 6%;
+            font-size: 35px;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(8deg);
+            }
+        }
+
+        /* Product pictures around the login form */
+        .product-picture {
+            position: absolute;
+            width: 150px;
+            height: 175px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 5px solid rgba(255, 250, 247, 0.8);
+            box-shadow: 0 15px 35px rgba(80, 45, 35, 0.18);
+            opacity: 0.82;
+            transition: 0.4s;
+        }
+
+        .product-picture:hover {
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        .product-left {
+            left: 7%;
+            top: 50%;
+            transform: translateY(-50%) rotate(-8deg);
+        }
+
+        .product-right {
+            right: 7%;
+            top: 50%;
+            transform: translateY(-50%) rotate(8deg);
+        }
+
+        /* Main container */
+        .login-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-box {
+            width: 420px;
+            max-width: 100%;
+            padding: 35px 40px;
+
+            background: rgba(255, 250, 247, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 22px;
+            backdrop-filter: blur(15px);
+
+            box-shadow: 0 20px 60px rgba(80, 45, 35, 0.22);
+        }
+
+        /* Brand logo */
+        .brand-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-circle {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff, #f2d8cd);
+            border: 2px solid #d6aa98;
+            box-shadow: 0 6px 20px rgba(80, 45, 35, 0.13);
+            overflow: hidden;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+
+        .logo-fallback {
+            font-family: Georgia, serif;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #57342e;
+        }
+
+        .brand-logo h2 {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            letter-spacing: 5px;
+            color: #57342e;
+        }
+
+        .brand-logo p {
+            margin-top: 7px;
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: #a16f5c;
+        }
+
+        /* Heading */
+        .login-box h1 {
+            text-align: center;
+            font-size: 29px;
+            color: #57342e;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text {
+            text-align: center;
+            font-size: 14px;
+            color: #89685c;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Input fields */
+        .input-group {
+            position: relative;
+            margin-bottom: 19px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a76f5a;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 52px;
+            padding: 0 15px 0 45px;
+            border: 1px solid #ead4c9;
+            border-radius: 9px;
+            background: #fffdfb;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #c98280;
+            box-shadow: 0 0 0 3px rgba(217, 149, 145, 0.15);
+        }
+
+        /* Login button */
+        .login-button {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #57342e, #865448);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-button i {
+            margin-right: 8px;
+        }
+
+        .login-button:hover {
+            background: linear-gradient(135deg, #bd817b, #a56a61);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(80, 45, 35, 0.2);
+        }
+
+        /* Error message */
+        #error-message {
+            display: none;
+            color: #c62828;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* Sign up */
+        .signup {
+            text-align: center;
+            margin-top: 24px;
+            color: #76594f;
+            font-size: 14px;
+        }
+
+        .signup a {
+            color: #a15f5d;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #a58a7e;
+            font-size: 11px;
+            margin-top: 22px;
+        }
+
+        .footer-text i {
+            color: #b77b76;
+            margin-right: 4px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .product-picture {
+                width: 110px;
+                height: 130px;
+                opacity: 0.45;
+            }
+
+            .product-left {
+                left: 2%;
+            }
+
+            .product-right {
+                right: 2%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .login-box {
+                padding: 30px 25px;
+            }
+
+            .product-picture {
+                display: none;
+            }
+
+            .beauty-icon {
+                opacity: 0.55;
+            }
+
+            .icon-one {
+                font-size: 35px;
+                left: 5%;
+            }
+
+            .icon-two {
+                font-size: 30px;
+                right: 5%;
+            }
+
+            .login-box h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Decorative background -->
+    <div class="background-decoration" aria-hidden="true">
+
+        <div class="bubble bubble-one"></div>
+        <div class="bubble bubble-two"></div>
+        <div class="bubble bubble-three"></div>
+
+        <!-- Beauty and makeup icons -->
+        <i class="fa-solid fa-wand-magic-sparkles beauty-icon icon-one"></i>
+        <i class="fa-solid fa-heart beauty-icon icon-two"></i>
+        <i class="fa-solid fa-spa beauty-icon icon-three"></i>
+        <i class="fa-solid fa-gem beauty-icon icon-four"></i>
+        <i class="fa-solid fa-star beauty-icon icon-five"></i>
+        <i class="fa-solid fa-star beauty-icon icon-six"></i>
+
+        <!-- Cosmetic product pictures -->
+        <img
+            class="product-picture product-left"
+            src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=400&q=80"
+            alt="Makeup products">
+
+        <img
+            class="product-picture product-right"
+            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80"
+            alt="Beauty and cosmetic products">
+
+    </div>
+
+    <!-- Login form -->
+    <main class="login-container">
+
+        <section class="login-box">
+
+            <!-- Brand logo -->
+            <div class="brand-logo">
+
+                <div class="logo-circle">
+                    <img
+                        src="otwoo-logo.png"
+                        alt="O.TWO.O logo"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+
+                    <span class="logo-fallback" style="display:none;">
+                        O.TWO.O
+                    </span>
+                </div>
+
+                <h2>O.TWO.O</h2>
+                <p>MAKE BEAUTY LAST</p>
+
+            </div>
+			
+            <form onsubmit="checkLogin(event)">
+
+                <!-- Username -->
+                <div class="input-group">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required>
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <!-- Login button -->
+                <button class="login-button" type="submit">
+                    <i class="fa-solid fa-right-to-bracket"
+                       aria-hidden="true"></i>
+                    LOGIN
+                </button>
+
+                <p id="error-message" role="alert">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    Incorrect username or password.
+                </p>
+
+            </form>
+
+     
+
+            <p class="footer-text">
+                <i class="fa-solid fa-heart"></i>
+                Beauty begins with you.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script>
+        function checkLogin(event) {
+            event.preventDefault();
+
+            // Demo credentials for a school project
+            const correctUsername = "jolina";
+            const correctPassword = "123456";
+
+            const username =
+                document.getElementById("username").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const errorMessage =
+                document.getElementById("error-message");
+
+            if (
+                username === correctUsername &&
+                password === correctPassword
+            ) {
+                window.location.href = "Home.html";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
+```

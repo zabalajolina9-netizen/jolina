@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> O.TWO.O Beauty</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            min-height: 100vh;
+            padding: 30px 20px;
+            overflow-x: hidden;
+            color: #452b25;
+            background:
+                radial-gradient(ellipse at 15% 20%, rgba(255,255,255,.9), transparent 35%),
+                radial-gradient(ellipse at 85% 75%, #c98d78, transparent 40%),
+                linear-gradient(135deg, #f8e9df, #eac7b5 35%, #f7dfd2 65%, #d8a28e);
+            background-attachment: fixed;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .brand-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .brand-name {
+            color: #542f25;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 5px;
+        }
+
+        .brand-tagline {
+            margin-top: 5px;
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: #80594b;
+        }
+
+        .brand-icon {
+            color: #a86f5c;
+            font-size: 38px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,.68);
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(91,54,42,.10);
+            backdrop-filter: blur(15px);
+        }
+
+        .navigation a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 19px;
+            color: #57372e;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: .3s ease;
+        }
+
+        .navigation a:hover,
+        .navigation a.active {
+            background: #d99591;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .welcome-card {
+            padding: 45px 40px;
+            margin-bottom: 34px;
+            text-align: center;
+            background: rgba(255,250,247,.86);
+            border: 1px solid rgba(255,255,255,.9);
+            border-radius: 22px;
+            box-shadow: 0 15px 40px rgba(91,54,42,.13);
+            backdrop-filter: blur(15px);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: #a76762;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .welcome-card h1 {
+            margin-bottom: 18px;
+            color: #482820;
+            font-size: clamp(27px, 4vw, 42px);
+            line-height: 1.2;
+        }
+
+        .welcome-card p {
+            max-width: 790px;
+            margin: 0 auto 20px;
+            color: #674b43;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .welcome-card .tagline {
+            color: #a76762;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 5px;
+            padding: 14px 27px;
+            background: #4a2929;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: .3s ease;
+        }
+
+        .primary-btn:hover {
+            background: #bd7775;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(91,54,42,.2);
+        }
+
+        .section-heading {
+            margin: 0 auto 24px;
+            text-align: center;
+        }
+
+        .section-heading .eyebrow { margin-bottom: 9px; }
+
+        .section-heading h2 {
+            color: #482820;
+            font-size: clamp(25px, 3vw, 34px);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            max-width: 680px;
+            margin: auto;
+            color: #765c53;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .product-section { margin-bottom: 38px; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .product-card {
+            min-width: 0;
+            overflow: hidden;
+            background: rgba(255,250,247,.92);
+            border: 1px solid rgba(255,255,255,.9);
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(91,54,42,.10);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 32px rgba(91,54,42,.18);
+        }
+
+        .product-card figure { margin: 0; }
+
+        .product-image {
+            display: block;
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            background: #f1d9cf;
+        }
+
+        .product-card figcaption {
+            padding: 20px 18px 22px;
+        }
+
+        .product-type {
+            display: inline-block;
+            margin-bottom: 9px;
+            color: #a76762;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .product-card h3 {
+            margin-bottom: 10px;
+            color: #482820;
+            font-size: 19px;
+        }
+
+        .product-card p {
+            color: #765c53;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 15px;
+            color: #8e514b;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .product-link:hover { color: #4a2929; }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .benefit-card {
+            padding: 25px 20px;
+            text-align: center;
+            background: rgba(255,250,247,.8);
+            border: 1px solid rgba(255,255,255,.85);
+            border-radius: 16px;
+        }
+
+        .benefit-card i {
+            margin-bottom: 12px;
+            color: #bd7775;
+            font-size: 27px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 9px;
+            color: #482820;
+            font-size: 17px;
+        }
+
+        .benefit-card p {
+            color: #765c53;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        footer {
+            padding: 22px 10px;
+            color: #704b40;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        footer span {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1000px) {
+            .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .product-image { height: 260px; }
+        }
+
+        @media (max-width: 800px) {
+            .benefits { grid-template-columns: 1fr; }
+            .brand-name { font-size: 27px; }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 20px 12px; }
+
+            .brand-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navigation {
+                border-radius: 18px;
+                gap: 5px;
+            }
+
+            .navigation a {
+                flex: 1 1 40%;
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+
+            .welcome-card { padding: 30px 20px; }
+            .welcome-card p { font-size: 14px; line-height: 1.8; }
+            .product-grid { grid-template-columns: 1fr; }
+            .product-image { height: 300px; }
+            .product-card figcaption { padding: 20px; }
+        }
+    
+        /* SHARED RESPONSIVE NAVIGATION — MATCHES THE CONTACT PAGE */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            margin: 0 0 25px;
+            background: #fffaf7;
+            border: 1px solid #f0d9d0;
+            border-radius: 40px;
+            box-shadow: 0 5px 20px #9c665522;
+        }
+
+        .navigation a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            flex: 0 1 auto;
+            min-width: 110px;
+            min-height: 44px;
+            padding: 11px 16px;
+            border: 0;
+            border-radius: 25px;
+            color: #65443b;
+            background: transparent;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.25;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .navigation a i {
+            flex-shrink: 0;
+        }
+
+        .navigation a:hover,
+        .navigation a:focus-visible,
+        .navigation a.active {
+            background: #c9827d;
+            color: #fff;
+            outline: none;
+        }
+
+        .navigation a:hover {
+            transform: translateY(-1px);
+        }
+
+        .navigation a:focus-visible {
+            box-shadow: 0 0 0 3px rgba(201, 130, 125, .3);
+        }
+
+        /* TABLETS */
+        @media (max-width: 800px) {
+            .navigation {
+                gap: 7px;
+                padding: 9px;
+                border-radius: 24px;
+            }
+
+            .navigation a {
+                flex: 1 1 calc(25% - 8px);
+                min-width: 100px;
+                padding: 11px 12px;
+            }
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 520px) {
+            .navigation {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+                padding: 9px;
+                border-radius: 18px;
+                margin-bottom: 22px;
+            }
+
+            .navigation a {
+                width: 100%;
+                min-width: 0;
+                min-height: 44px;
+                padding: 11px 5px;
+                gap: 6px;
+                font-size: 12px;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+
+            .navigation a.logout {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* EXTRA-SMALL PHONES */
+        @media (max-width: 340px) {
+            .navigation {
+                gap: 5px;
+                padding: 7px;
+            }
+
+            .navigation a {
+                padding: 10px 3px;
+                gap: 4px;
+                font-size: 11px;
+            }
+
+            .navigation a i {
+                font-size: 11px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .navigation a {
+                transition: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+
+        <header class="brand-header">
+            <div>
+                <div class="brand-name">O.TWO.O</div>
+                <div class="brand-tagline">MAKE BEAUTY LAST</div>
+            </div>
+            <i class="fa-solid fa-gem brand-icon" aria-hidden="true"></i>
+        </header>
+
+        <nav class="navigation" aria-label="Main navigation">
+            <a href="Home.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="About.html"><i class="fa-solid fa-circle-info"></i> About</a>
+            <a href="Product.html"><i class="fa-solid fa-box"></i> Product</a>
+            <a href="Contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+            <a href="index.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i> Log out</a>
+        </nav>
+
+        <main>
+            <section class="welcome-card">
+                <span class="eyebrow">Welcome to Leigh's Cosmetic</span>
+                <h1>Beauty That Brings Out Your Confidence</h1>
+                <p>
+                    Discover the O.TWO.O beauty collection and find makeup essentials
+                    for your everyday routine, special occasions, and personal style.
+                    Explore products made to help you express yourself with confidence.
+                </p>
+                <p class="tagline">Your Beauty. Your Style. Your Confidence.</p>
+                <a href="#product-overview" class="primary-btn">
+                    <i class="fa-solid fa-heart"></i> Explore Our Products
+                </a>
+            </section>
+
+            <section class="product-section" id="product-overview">
+                <div class="section-heading">
+                    <span class="eyebrow">Discover the Collection</span>
+                    <h2>Product Overview</h2>
+                    <p>
+                        Explore four makeup essentials from our featured collection.
+                        Each product below includes a picture and a short description
+                        to help you learn about its intended beauty use.
+                    </p>
+                </div>
+
+                <div class="product-grid">
+                    <article class="product-card">
+                        <figure>
+                            <img class="product-image"
+                                 src="Lipstick.jpeg"
+                                 alt="O.TWO.O matte lipstick product"
+                                 loading="lazy">
+                            <figcaption>
+                                <span class="product-type">Lip Makeup</span>
+                                <h3>O.TWO.O Matte Lipstick</h3>
+                                <p>
+                                    Create a bold, polished lip look with O.TWO.O lipstick.
+                                    Its rich color and smooth application make it a lovely
+                                    choice for everyday makeup or special occasions.
+                                </p>
+                                <a class="product-link" href="Product.html">
+                                    View products <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </article>
+
+                    <article class="product-card">
+                        <figure>
+                            <img class="product-image"
+                                 src="Liquid Blush.jpeg"
+                                 alt="O.TWO.O velvet liquid blush product"
+                                 loading="lazy">
+                            <figcaption>
+                                <span class="product-type">Cheek Makeup</span>
+                                <h3>O.TWO.O Velvet Liquid Blush</h3>
+                                <p>
+                                    Add a fresh-looking flush of color with O.TWO.O Velvet
+                                    Liquid Blush. Its liquid formula can be blended onto
+                                    the cheeks for a soft, radiant makeup finish.
+                                </p>
+                                <a class="product-link" href="Product.html">
+                                    View products <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </article>
+
+                    <article class="product-card">
+                        <figure>
+                            <img class="product-image"
+                                 src="mascara2.jpeg"
+                                 alt="O.TWO.O mascara product"
+                                 loading="lazy">
+                            <figcaption>
+                                <span class="product-type">Eye Makeup</span>
+                                <h3>O.TWO.O Mascara</h3>
+                                <p>
+                                    Enhance the appearance of your lashes with O.TWO.O Mascara.
+                                    Apply carefully from the roots toward the tips to
+                                    help create a more defined eye look.
+                                </p>
+                                <a class="product-link" href="Product.html">
+                                    View products <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </article>
+
+                    <article class="product-card">
+                        <figure>
+                            <img class="product-image"
+                                 src="Matte Cushion.jpeg"
+                                 alt="O.TWO.O matte cushion product"
+                                 loading="lazy">
+                            <figcaption>
+                                <span class="product-type">Face Makeup</span>
+                                <h3>O.TWO.O Matte Cushion</h3>
+                                <p>
+                                    Get a smooth-looking base with O.TWO.O Matte Cushion.
+                                    Use the cushion applicator to press and blend the
+                                    product evenly for your preferred matte-style finish.
+                                </p>
+                                <a class="product-link" href="Product.html">
+                                    View products <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            </section>
+
+            <section class="benefits" aria-label="Our highlights">
+                <article class="benefit-card">
+                    <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                    <h3>Express Your Style</h3>
+                    <p>Explore makeup looks and shades that reflect your personality.</p>
+                </article>
+                <article class="benefit-card">
+                    <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
+                    <h3>Beauty Inspiration</h3>
+                    <p>Find inspiration for everyday makeup and special occasions.</p>
+                </article>
+                <article class="benefit-card">
+                    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                    <h3>Confidence in Every Look</h3>
+                    <p>Celebrate your individuality and make your beauty routine your own.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            © 2026 O.TWO.O Beauty | <span>ALL RIGHTS RESERVED</span><br>
+             Make Beauty Last
+        </footer>
+    </div>
+</body>
+</html>

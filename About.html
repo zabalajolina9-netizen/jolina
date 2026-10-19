@@ -1,0 +1,728 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About - O.TWO.O Cosmetics</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 30px 20px;
+            color: #452b25;
+            background:
+                radial-gradient(ellipse at 15% 20%,
+                    rgba(255,255,255,.9), transparent 35%),
+                radial-gradient(ellipse at 85% 75%,
+                    #c98d78, transparent 40%),
+                linear-gradient(135deg,
+                    #f8e9df, #eac7b5 35%,
+                    #f7dfd2 65%, #d8a28e);
+            background-attachment: fixed;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* TOP NAVIGATION */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            margin-bottom: 28px;
+            background: rgba(255,250,247,.90);
+            border: 1px solid rgba(255,255,255,.8);
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(91,54,42,.10);
+            backdrop-filter: blur(15px);
+        }
+
+        .navigation a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 20px;
+            color: #57372e;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: .3s ease;
+        }
+
+        .navigation a:hover,
+        .navigation a.active {
+            background: #d99591;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* COMMON PANEL */
+        .panel {
+            background: rgba(255,250,247,.91);
+            border: 1px solid rgba(255,255,255,.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(91,54,42,.12);
+            backdrop-filter: blur(12px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 30px;
+            padding: 35px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .eyebrow {
+            color: #a76762;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            color: #482820;
+            font-family: Georgia, serif;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            color: #765c53;
+            font-size: 15px;
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+
+        .tagline {
+            color: #a76762 !important;
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 23px !important;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 350px;
+            display: block;
+            object-fit: contain;
+            background: #fff8f4;
+            border-radius: 16px;
+        }
+
+        .explore-button {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 13px 22px;
+            background: #d99591;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: .3s;
+        }
+
+        .explore-button:hover {
+            background: #a76762;
+            transform: translateY(-2px);
+        }
+
+        /* SECTION HEADINGS */
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            flex: 0 0 52px;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: #d99591;
+            color: white;
+            font-size: 22px;
+        }
+
+        .section-heading h2,
+        .product-information > h2 {
+            color: #482820;
+            font-family: Georgia, serif;
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .subheading {
+            color: #a76762;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-text {
+            color: #765c53;
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        /* PRODUCT OVERVIEW */
+        .product-information {
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .product-information > h2 {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            color: #765c53;
+            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .product-card {
+            overflow: hidden;
+            background: #fffaf7;
+            border: 1px solid #f1d9cf;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(91,54,42,.08);
+            transition: .3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(91,54,42,.15);
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            height: 210px;
+            padding: 10px;
+            object-fit: contain;
+            background: #fff8f4;
+        }
+
+        .product-card figcaption {
+            padding: 16px;
+        }
+
+        .product-card h3 {
+            color: #482820;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            color: #765c53;
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        /* WEBSITE OVERVIEW */
+        .content-panel {
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .website-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .overview-image {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            object-fit: contain;
+            background: #fff8f4;
+            box-shadow: 0 8px 22px rgba(91,54,42,.10);
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #765c53;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .feature-list i {
+            color: #a76762;
+            margin-top: 4px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            color: #704b40;
+            font-size: 13px;
+            padding: 18px 10px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .hero,
+            .website-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-image {
+                height: 320px;
+            }
+
+            .overview-image {
+                max-height: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 18px 12px;
+            }
+
+            .navigation {
+                border-radius: 18px;
+                gap: 5px;
+            }
+
+            .navigation a {
+                flex: 1 1 40%;
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+
+            .hero,
+            .content-panel,
+            .product-information {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .hero-image {
+                height: 240px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .product-card img {
+                height: 150px;
+            }
+
+            .product-card figcaption {
+                padding: 12px;
+            }
+
+            .product-card h3 {
+                font-size: 14px;
+            }
+
+            .product-card p {
+                font-size: 12px;
+            }
+
+            .section-heading h2,
+            .product-information > h2 {
+                font-size: 23px;
+            }
+        }
+    
+        /* SHARED RESPONSIVE NAVIGATION — MATCHES THE CONTACT PAGE */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            margin: 0 0 25px;
+            background: #fffaf7;
+            border: 1px solid #f0d9d0;
+            border-radius: 40px;
+            box-shadow: 0 5px 20px #9c665522;
+        }
+
+        .navigation a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            flex: 0 1 auto;
+            min-width: 110px;
+            min-height: 44px;
+            padding: 11px 16px;
+            border: 0;
+            border-radius: 25px;
+            color: #65443b;
+            background: transparent;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.25;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .navigation a i {
+            flex-shrink: 0;
+        }
+
+        .navigation a:hover,
+        .navigation a:focus-visible,
+        .navigation a.active {
+            background: #c9827d;
+            color: #fff;
+            outline: none;
+        }
+
+        .navigation a:hover {
+            transform: translateY(-1px);
+        }
+
+        .navigation a:focus-visible {
+            box-shadow: 0 0 0 3px rgba(201, 130, 125, .3);
+        }
+
+        /* TABLETS */
+        @media (max-width: 800px) {
+            .navigation {
+                gap: 7px;
+                padding: 9px;
+                border-radius: 24px;
+            }
+
+            .navigation a {
+                flex: 1 1 calc(25% - 8px);
+                min-width: 100px;
+                padding: 11px 12px;
+            }
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 520px) {
+            .navigation {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+                padding: 9px;
+                border-radius: 18px;
+                margin-bottom: 22px;
+            }
+
+            .navigation a {
+                width: 100%;
+                min-width: 0;
+                min-height: 44px;
+                padding: 11px 5px;
+                gap: 6px;
+                font-size: 12px;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+
+            .navigation a.logout {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* EXTRA-SMALL PHONES */
+        @media (max-width: 340px) {
+            .navigation {
+                gap: 5px;
+                padding: 7px;
+            }
+
+            .navigation a {
+                padding: 10px 3px;
+                gap: 4px;
+                font-size: 11px;
+            }
+
+            .navigation a i {
+                font-size: 11px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .navigation a {
+                transition: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <!-- TOP NAVIGATION -->
+    <nav class="navigation" aria-label="Main navigation">
+        <a href="Home.html">
+            <i class="fa-solid fa-house"></i> Home
+        </a>
+
+        <a href="About.html" class="active">
+            <i class="fa-solid fa-circle-info"></i> About
+        </a>
+
+        <a href="Product.html">
+            <i class="fa-solid fa-box"></i> Product
+        </a>
+
+        <a href="Contact.html">
+            <i class="fa-solid fa-envelope"></i> Contact
+        </a>
+    </nav>
+
+    <!-- WEBSITE HERO -->
+    <header class="panel hero">
+        <div>
+            <p class="eyebrow">WELCOME TO O.TWO.O</p>
+
+            <h1>Beauty Beyond Expectations</h1>
+
+            <p>
+                Welcome to O.TWO.O Cosmetics, a beauty-focused website
+                that introduces makeup products for different styles
+                and beauty preferences.
+            </p>
+
+            <p>
+                Explore our product collection, learn about makeup
+                essentials, and discover useful information through
+                a simple and organized website.
+            </p>
+
+            <p class="tagline">Make beauty your own.</p>
+
+            <a href="Product.html" class="explore-button">
+                <i class="fa-solid fa-bag-shopping"></i>
+                Explore Products
+            </a>
+        </div>
+
+        <img
+            class="hero-image"
+            src="website-overview.png"
+            alt="O.TWO.O cosmetics collection overview">
+    </header>
+
+    <!-- ABOUT O.TWO.O PRODUCTS -->
+    <section class="panel product-information">
+
+        <div class="section-heading">
+            <div class="section-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+            <div>
+                <h2>About O.TWO.O Cosmetics</h2>
+                <p class="subheading">Makeup for your everyday beauty</p>
+            </div>
+        </div>
+
+        <p class="section-description">
+            O.TWO.O features makeup products for different beauty
+            styles, from everyday looks to more defined makeup.
+            Explore these four featured products.
+        </p>
+
+        <div class="product-grid">
+
+            <figure class="product-card">
+                <img src="product-lipstick.jpg"
+                     alt="O.TWO.O lipstick">
+                <figcaption>
+                    <h3>O.TWO.O Lipstick</h3>
+                    <p>
+                        A lip makeup product that adds color and helps
+                        complete everyday or special-occasion looks.
+                        Choose a shade that complements your style.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="product-blush.jpg"
+                     alt="O.TWO.O velvet liquid blush">
+                <figcaption>
+                    <h3>Velvet Liquid Blush</h3>
+                    <p>
+                        A liquid cheek color that can be blended to
+                        create a soft-looking flush and add color to
+                        your makeup routine.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="product-mascara.jpg"
+                     alt="O.TWO.O mascara">
+                <figcaption>
+                    <h3>O.TWO.O Mascara</h3>
+                    <p>
+                        An eye makeup essential used to define lashes
+                        and complement both natural and dramatic
+                        makeup looks.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="product-cushion.jpg"
+                     alt="O.TWO.O cushion makeup">
+                <figcaption>
+                    <h3>O.TWO.O Cushion Makeup</h3>
+                    <p>
+                        A compact complexion product designed for
+                        convenient application as part of your
+                        everyday makeup routine.
+                    </p>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+    <!-- WEBSITE INFORMATION -->
+    <section class="panel content-panel">
+
+        <div class="website-overview">
+
+            <div>
+                <div class="section-heading">
+                    <div class="section-icon">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+
+                    <div>
+                        <h2>About the Website</h2>
+                        <p class="subheading">Your beauty guide online</p>
+                    </div>
+                </div>
+
+                <p class="section-text">
+                    This website is an educational HTML and CSS project
+                    created to present O.TWO.O cosmetics in a clear,
+                    attractive, and organized format.
+                </p>
+
+                <p class="section-text" style="margin-top: 12px;">
+                    Its rose-gold and blush-pink design creates a
+                    consistent beauty-brand appearance. Visitors can
+                    use the navigation menu to explore the website
+                    and learn about the cosmetics collection.
+                </p>
+
+                <ul class="feature-list">
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            <strong>Home:</strong> introduces the
+                            website and highlights featured products.
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            <strong>About:</strong> provides information
+                            about the website and its product range.
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            <strong>Product:</strong> displays product
+                            details and descriptions.
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>
+                            <strong>Contact:</strong> provides a place
+                            for visitor inquiries and contact details.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <img
+                class="overview-image"
+                src="website-overview.png"
+                alt="Preview of the O.TWO.O cosmetics website">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 O.TWO.O Cosmetics | All Rights Reserved</p>
+    </footer>
+
+</div>
+</body>
+</html>
+```

@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products - O.TWO.O Cosmetics</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 25px 20px;
+            color: #54352f;
+            background: linear-gradient(135deg, #fff4ef, #f4d6d2, #e9b9a8);
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1500px;
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            background: #fffaf7;
+            border-radius: 40px;
+            box-shadow: 0 5px 20px #9c665522;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #65443b;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 12px 18px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .navigation a i {
+            margin-right: 7px;
+        }
+
+        .navigation a:hover,
+        .navigation a.active {
+            background: #c9827d;
+            color: white;
+        }
+
+        /* HEADER */
+        .product-header {
+            text-align: center;
+            padding: 35px 20px;
+            margin-bottom: 35px;
+            background: #fffaf7;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px #754b3c18;
+        }
+
+        .product-header h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(28px, 4vw, 42px);
+            color: #58352e;
+            margin-bottom: 12px;
+        }
+
+        .product-header h1 i {
+            color: #bd7772;
+            margin-right: 10px;
+        }
+
+        .product-header p {
+            color: #80625a;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .store-label {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: #f2d7d0;
+            color: #89564e;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* PRODUCT CATEGORIES */
+        .category {
+            margin-bottom: 45px;
+        }
+
+        .category-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #d8a49a;
+        }
+
+        .category-heading i {
+            color: #a65f5a;
+            font-size: 25px;
+        }
+
+        .category-heading h2 {
+            color: #58352e;
+            font-family: Georgia, serif;
+            font-size: 25px;
+        }
+
+        .category-heading p {
+            margin-top: 5px;
+            color: #896d63;
+            font-size: 13px;
+        }
+
+        /* FIVE PRODUCTS PER ROW ON WIDE SCREENS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        /* PRODUCT FIGURE */
+        .product-card {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #fffaf7;
+            border: 1px solid #f0d9d0;
+            border-radius: 16px;
+            box-shadow: 0 7px 20px #754b3c17;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px #754b3c25;
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            height: 210px;
+            padding: 8px;
+            object-fit: contain;
+            background: #fff5f0;
+        }
+
+        .product-card figcaption {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 15px;
+        }
+
+        /* PRODUCT LABEL */
+        .product-type {
+            align-self: flex-start;
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 5px 9px;
+            background: #f3ded8;
+            color: #925d55;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .product-card h3 {
+            margin-bottom: 8px;
+            color: #56352e;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .product-card p {
+            flex: 1;
+            margin-bottom: 12px;
+            color: #806960;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* PRODUCT PRICE */
+        .product-price {
+            display: block;
+            margin: 10px 0 14px;
+            color: #a85e59;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .price-note {
+            display: block;
+            margin-top: 4px;
+            color: #967d73;
+            font-size: 10px;
+            font-weight: normal;
+        }
+
+        /* INQUIRY BUTTON */
+        .view-button {
+            display: block;
+            width: 100%;
+            margin-top: auto;
+            padding: 11px 6px;
+            border: none;
+            border-radius: 25px;
+            background: #c9827d;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .view-button:hover {
+            background: #9e5d58;
+        }
+
+        .view-button i {
+            margin-right: 5px;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 30px;
+            padding: 22px;
+            background: #fffaf7;
+            border-radius: 16px;
+            color: #80625a;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* SMALL DESKTOP AND LAPTOP */
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        /* TABLET */
+        @media (max-width: 950px) {
+            .products {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .product-card img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .product-card img {
+                height: 180px;
+            }
+
+            .product-card figcaption {
+                padding: 12px;
+            }
+
+            .product-card h3 {
+                font-size: 14px;
+            }
+
+            .product-card p {
+                font-size: 11px;
+            }
+
+            .product-price {
+                font-size: 19px;
+            }
+
+            .navigation {
+                border-radius: 18px;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 380px) {
+            body {
+                padding: 12px 8px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                display: grid;
+                grid-template-columns: 40% 60%;
+            }
+
+            .product-card img {
+                height: 100%;
+                min-height: 230px;
+            }
+
+            .product-card figcaption {
+                padding: 14px 10px;
+            }
+
+            .product-card p {
+                font-size: 12px;
+            }
+
+            .navigation a {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    
+        /* SHARED RESPONSIVE NAVIGATION — MATCHES THE CONTACT PAGE */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            margin: 0 0 25px;
+            background: #fffaf7;
+            border: 1px solid #f0d9d0;
+            border-radius: 40px;
+            box-shadow: 0 5px 20px #9c665522;
+        }
+
+        .navigation a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            flex: 0 1 auto;
+            min-width: 110px;
+            min-height: 44px;
+            padding: 11px 16px;
+            border: 0;
+            border-radius: 25px;
+            color: #65443b;
+            background: transparent;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.25;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .navigation a i {
+            flex-shrink: 0;
+        }
+
+        .navigation a:hover,
+        .navigation a:focus-visible,
+        .navigation a.active {
+            background: #c9827d;
+            color: #fff;
+            outline: none;
+        }
+
+        .navigation a:hover {
+            transform: translateY(-1px);
+        }
+
+        .navigation a:focus-visible {
+            box-shadow: 0 0 0 3px rgba(201, 130, 125, .3);
+        }
+
+        /* TABLETS */
+        @media (max-width: 800px) {
+            .navigation {
+                gap: 7px;
+                padding: 9px;
+                border-radius: 24px;
+            }
+
+            .navigation a {
+                flex: 1 1 calc(25% - 8px);
+                min-width: 100px;
+                padding: 11px 12px;
+            }
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 520px) {
+            .navigation {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+                padding: 9px;
+                border-radius: 18px;
+                margin-bottom: 22px;
+            }
+
+            .navigation a {
+                width: 100%;
+                min-width: 0;
+                min-height: 44px;
+                padding: 11px 5px;
+                gap: 6px;
+                font-size: 12px;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+
+            .navigation a.logout {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* EXTRA-SMALL PHONES */
+        @media (max-width: 340px) {
+            .navigation {
+                gap: 5px;
+                padding: 7px;
+            }
+
+            .navigation a {
+                padding: 10px 3px;
+                gap: 4px;
+                font-size: 11px;
+            }
+
+            .navigation a i {
+                font-size: 11px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .navigation a {
+                transition: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <!-- NAVIGATION -->
+    <nav class="navigation" aria-label="Main navigation">
+        <a href="Home.html">
+            <i class="fa-solid fa-house"></i> Home
+        </a>
+
+        <a href="About.html">
+            <i class="fa-solid fa-circle-info"></i> About
+        </a>
+
+        <a href="Product.html" class="active">
+            <i class="fa-solid fa-box-open"></i> Products
+        </a>
+
+        <a href="Contact.html">
+            <i class="fa-solid fa-envelope"></i> Contact
+        </a>
+
+    </nav>
+
+    <!-- STORE HEADER -->
+    <header class="product-header">
+        <h1>
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            O.TWO.O Cosmetics Collection
+        </h1>
+
+        <p>
+            Discover your beauty essentials, from face makeup
+            to eye-defining products and beautiful lip colors.
+        </p>
+
+        <span class="store-label">
+            BEAUTY • MAKEUP • YOUR STYLE
+        </span>
+    </header>
+
+    <!-- 1. FACE MAKEUP -->
+    <section class="category">
+        <div class="category-heading">
+            <i class="fa-solid fa-face-smile"></i>
+            <div>
+                <h2>Face Makeup</h2>
+                <p>Concealers, complexion products and face powders.</p>
+            </div>
+        </div>
+
+        <div class="products">
+
+            <figure class="product-card">
+                <img src="Concealer1.jpeg"
+                     alt="O.TWO.O Fair liquid concealer">
+                <figcaption>
+                    <span class="product-type">Concealer</span>
+                    <h3>Liquid Concealer - Fair</h3>
+                    <p>Helps conceal the appearance of blemishes and create an even-looking complexion.</p>
+                    <strong class="product-price">₱199
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="Concealer.jpeg"
+                     alt="O.TWO.O liquid concealer">
+                <figcaption>
+                    <span class="product-type">Concealer</span>
+                    <h3>Liquid Concealer</h3>
+                    <p>A liquid complexion product for targeted coverage and a smooth-looking makeup base.</p>
+                    <strong class="product-price">₱199
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="Concealer3.jpeg"
+                     alt="O.TWO.O Sand shade liquid concealer">
+                <figcaption>
+                    <span class="product-type">Concealer</span>
+                    <h3>Liquid Concealer - Sand</h3>
+                    <p>A sand-toned concealer option for your complexion makeup routine.</p>
+                    <strong class="product-price">₱199
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="Contour&amp;Highlighter.jpeg"
+                     alt="O.TWO.O contour and highlighter">
+                <figcaption>
+                    <span class="product-type">Face Makeup</span>
+                    <h3>Contour &amp; Highlighter</h3>
+                    <p>Helps add dimension and highlight selected areas of the face.</p>
+                    <strong class="product-price">₱249
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="Foundation Powder.jpeg"
+                     alt="O.TWO.O foundation powder compact">
+                <figcaption>
+                    <span class="product-type">Face Powder</span>
+                    <h3>Foundation Powder</h3>
+                    <p>A compact powder product for your daily complexion makeup routine.</p>
+                    <strong class="product-price">₱299
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+    <!-- 2. EYEBROW MAKEUP -->
+    <section class="category">
+        <div class="category-heading">
+            <i class="fa-solid fa-eye"></i>
+            <div>
+                <h2>Eyebrow Makeup</h2>
+                <p>Products for shaping, filling and defining brows.</p>
+            </div>
+        </div>
+
+        <div class="products">
+
+            <figure class="product-card">
+                <img src="Eyebrow Tattoo.jpeg"
+                     alt="O.TWO.O eyebrow tattoo">
+                <figcaption>
+                    <span class="product-type">Eyebrow</span>
+                    <h3>Eyebrow Tattoo</h3>
+                    <p>An eyebrow styling product for creating defined-looking brows.</p>
+                    <strong class="product-price">₱229
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="Eyebrow.jpeg"
+                     alt="O.TWO.O eyebrow makeup">
+                <figcaption>
+                    <span class="product-type">Eyebrow</span>
+                    <h3>Eyebrow Definer</h3>
+                    <p>A brow essential for filling, shaping and defining eyebrows.</p>
+                    <strong class="product-price">₱179
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+    <!-- 3. LIP PRODUCTS -->
+    <section class="category">
+        <div class="category-heading">
+            <i class="fa-solid fa-heart"></i>
+            <div>
+                <h2>Lip Collection</h2>
+                <p>Lip color, shine and different finishes.</p>
+            </div>
+        </div>
+
+        <div class="products">
+
+            <figure class="product-card">
+                <img src="Lip filler.jpeg"
+                     alt="O.TWO.O lip filler">
+                <figcaption>
+                    <span class="product-type">Lip Makeup</span>
+                    <h3>Lip Filler</h3>
+                    <p>A lip makeup product for enhancing the appearance of your lips.</p>
+                    <strong class="product-price">₱199
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="lip glaze.jpeg"
+                     alt="O.TWO.O lip glaze">
+                <figcaption>
+                    <span class="product-type">Lip Makeup</span>
+                    <h3>Lip Glaze</h3>
+                    <p>A lip color product for a glossy, polished finish.</p>
+                    <strong class="product-price">₱219
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+            <figure class="product-card">
+                <img src="lip gloss.jpeg"
+                     alt="O.TWO.O lip gloss collection">
+                <figcaption>
+                    <span class="product-type">Lip Makeup</span>
+                    <h3>Lip Gloss</h3>
+                    <p>Adds shine to complete a natural, soft or glamorous makeup look.</p>
+                    <strong class="product-price">₱199
+                        <span class="price-note"></span>
+                    </strong>
+                    <a class="view-button" href="Contact.html">
+                        <i class="fa-solid fa-circle-info"></i> Inquire Now
+                    </a>
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>O.TWO.O Cosmetics Collection</strong></p>
+        <p>Explore beauty products and discover your personal style.</p>
+        <p>© 2026 O.TWO.O Cosmetics | All Rights Reserved</p>
+    </footer>
+
+</div>
+</body>
+</html>
